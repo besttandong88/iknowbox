@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tandong.iknowbox.admin.orders.dao.OrderPurchaseMapper" >
+  <resultMap id="BaseResultMap" type="com.tandong.iknowbox.admin.orders.entity.OrderPurchase" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bus_pur_orderno" property="busPurOrderno" jdbcType="VARCHAR" />
+    <result column="mer_no" property="merNo" jdbcType="VARCHAR" />
+    <result column="pur_amount" property="purAmount" jdbcType="DECIMAL" />
+    <result column="mem_no" property="memNo" jdbcType="VARCHAR" />
+    <result column="cust_no" property="custNo" jdbcType="VARCHAR" />
+    <result column="bank_prod_code" property="bankProdCode" jdbcType="VARCHAR" />
+    <result column="fund_code" property="fundCode" jdbcType="VARCHAR" />
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+    <result column="purch_type" property="purchType" jdbcType="TINYINT" />
+    <result column="pur_status" property="purStatus" jdbcType="TINYINT" />
+    <result column="is_pay_grant" property="isPayGrant" jdbcType="TINYINT" />
+    <result column="begin_profit_date" property="beginProfitDate" jdbcType="DATE" />
+    <result column="confirm_share" property="confirmShare" jdbcType="INTEGER" />
+    <result column="confirm_date" property="confirmDate" jdbcType="DATE" />
+    <result column="res_code" property="resCode" jdbcType="VARCHAR" />
+    <result column="res_msg" property="resMsg" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="DATE" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="apply_uptime" property="applyUptime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, bus_pur_orderno, mer_no, pur_amount, mem_no, cust_no, bank_prod_code, fund_code, 
+    channel_code, purch_type, pur_status, is_pay_grant, begin_profit_date, confirm_share, 
+    confirm_date, res_code, res_msg, remark, apply_date, apply_time, apply_uptime
+  </sql>
+  
+  <sql id="paramsSql1">
+	<if test="condition != null"> 
+		<![CDATA[and bus_pur_orderno like #{condition} or mer_no like #{condition} or mem_no like #{condition} or fund_code like #{condition} ]]>
+	</if>
+	<if test="orderStatus != null"> 
+		<![CDATA[and pur_status = #{orderStatus}]]>
+	</if>
+	<if test="fundChannel != null"> 
+		<![CDATA[and channel_code = #{fundChannel}]]>
+	</if>
+    <if test="purStartTime!=null and purStartTime!=''">
+        <![CDATA[AND apply_date >= #{purStartTime}]]>
+    </if>
+    <if test="purEndTime!=null and purEndTime!=''">
+        <![CDATA[AND apply_date <= #{purEndTime}]]>
+    </if> 
+  </sql>
+  
+  <select id="queryWithPage" resultMap="BaseResultMap">
+		<![CDATA[
+		select
+		id as id, 
+		bus_pur_orderno as busPurOrderno, 
+		mer_no as merNo, 
+		pur_amount as purAmount, 
+		mem_no as memNo, 
+		cust_no as custNo, 
+		bank_prod_code as bankProdCode, 
+		fund_code as fundCode, 
+    	channel_code as channelCode, 
+    	purch_type as purchType, 
+    	pur_status as purStatus, 
+    	is_pay_grant as isPayGrant, 
+    	begin_profit_date as beginProfitDate, 
+    	confirm_share as confirmShare, 
+    	confirm_date as confirmDate, 
+    	res_code as resCode, 
+    	res_msg as resMsg, 
+    	remark as remark, 
+    	apply_date as applyDate, 
+    	apply_time as applyTime, 
+    	apply_uptime as applyUptime
+		from order_purchase where 1=1 ]]>
+		<include refid="paramsSql1" />
+	</select>
+  
+  <select id="getOrderPurchaseById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_purchase
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <delete id="delOrderPurchase" parameterType="java.lang.Integer" >
+    delete from order_purchase
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertOrderPurchase" parameterType="com.tandong.iknowbox.admin.orders.entity.OrderPurchase" >
+    insert into order_purchase (id, bus_pur_orderno, mer_no, 
+      pur_amount, mem_no, cust_no, 
+      bank_prod_code, fund_code, channel_code, 
+      purch_type, pur_status, is_pay_grant, 
+      begin_profit_date, confirm_share, confirm_date, 
+      res_code, res_msg, remark, 
+      apply_date, apply_time, apply_uptime
+      )
+    values (#{id,jdbcType=INTEGER}, #{busPurOrderno,jdbcType=VARCHAR}, #{merNo,jdbcType=VARCHAR}, 
+      #{purAmount,jdbcType=DECIMAL}, #{memNo,jdbcType=VARCHAR}, #{custNo,jdbcType=VARCHAR}, 
+      #{bankProdCode,jdbcType=VARCHAR}, #{fundCode,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, 
+      #{purchType,jdbcType=TINYINT}, #{purStatus,jdbcType=TINYINT}, #{isPayGrant,jdbcType=TINYINT}, 
+      #{beginProfitDate,jdbcType=DATE}, #{confirmShare,jdbcType=INTEGER}, #{confirmDate,jdbcType=DATE}, 
+      #{resCode,jdbcType=VARCHAR}, #{resMsg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{applyDate,jdbcType=DATE}, #{applyTime,jdbcType=TIMESTAMP}, #{applyUptime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <update id="updateOrderPurchase" parameterType="com.tandong.iknowbox.admin.orders.entity.OrderPurchase" >
+    update order_purchase
+    set bus_pur_orderno = #{busPurOrderno,jdbcType=VARCHAR},
+      mer_no = #{merNo,jdbcType=VARCHAR},
+      pur_amount = #{purAmount,jdbcType=DECIMAL},
+      mem_no = #{memNo,jdbcType=VARCHAR},
+      cust_no = #{custNo,jdbcType=VARCHAR},
+      bank_prod_code = #{bankProdCode,jdbcType=VARCHAR},
+      fund_code = #{fundCode,jdbcType=VARCHAR},
+      channel_code = #{channelCode,jdbcType=VARCHAR},
+      purch_type = #{purchType,jdbcType=TINYINT},
+      pur_status = #{purStatus,jdbcType=TINYINT},
+      is_pay_grant = #{isPayGrant,jdbcType=TINYINT},
+      begin_profit_date = #{beginProfitDate,jdbcType=DATE},
+      confirm_share = #{confirmShare,jdbcType=INTEGER},
+      confirm_date = #{confirmDate,jdbcType=DATE},
+      res_code = #{resCode,jdbcType=VARCHAR},
+      res_msg = #{resMsg,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=DATE},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      apply_uptime = #{applyUptime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

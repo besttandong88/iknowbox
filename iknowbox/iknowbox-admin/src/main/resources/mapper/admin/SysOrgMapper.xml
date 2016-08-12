@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tandong.iknowbox.admin.sysmgr.dao.SysOrgMapper">
+    
+    <resultMap type="com.tandong.iknowbox.admin.sysmgr.entity.SysOrg" id="sysOrgMap" >
+       <id property="id" column="ID"/>
+       <result property="orgName" column="org_name"/>
+       <result property="orgMail" column="org_mail"/>
+       <result property="orgManager" column="org_manager"/>
+       <result property="orgPhone" column="org_phone"/>
+       <result property="address" column="address"/>
+       <result property="parent" column="parent"/>
+       <result property="hasChild" column="hasChild"/>
+       <result property="insertTime" column="insert_time"/>
+       <result property="lastUpdateTime" column="last_update_time"/>
+    </resultMap>
+    
+    <sql id="paramsSql1">
+		<if test="orgName != null"> and org_name like #{orgName}</if>
+		<if test="parent != null"> and parent = #{parent}</if>
+	</sql>
+	<select id="queryWithPage" resultMap="sysOrgMap">
+       select 
+      	 	ID as id,
+       		org_name as orgName,
+       		org_mail as orgMail,
+       		org_manager as orgManager,
+       		org_phone as orgPhone,
+       		address as address,
+       		parent as parent,
+       		hasChild as hasChild,
+       		insert_time as insertTime,
+       		last_update_time as lastUpdateTime
+        from sys_org where 1=1 <include refid="paramsSql1"/>
+    </select>
+    
+    
+    
+    <sql id="paramsSql2">
+    	<if test="orgName != null"> and org_name like #{orgName}</if>
+		<if test="parent != null"> and parent = #{parent}</if>
+	</sql>
+    <select id="queryByParams" resultMap="sysOrgMap">
+       select 
+      	 	ID as id,
+       		org_name as orgName,
+       		org_mail as orgMail,
+       		org_manager as orgManager,
+       		org_phone as orgPhone,
+       		address as address,
+       		parent as parent,
+       		hasChild as hasChild,
+       		insert_time as insertTime,
+       		last_update_time as lastUpdateTime
+        from sys_org where 1=1 <include refid="paramsSql2"/>
+    </select>
+    
+	
+	<select id="getSysOrgById" resultMap="sysOrgMap">
+       select *from sys_org where ID = #{id}
+    </select>
+    
+    <insert id="insertSysOrg" parameterType="com.tandong.iknowbox.admin.sysmgr.entity.SysOrg" useGeneratedKeys="true" keyProperty="id"> 
+       insert into 
+          sys_org(
+          	org_name,
+       		org_mail,
+       		org_manager,
+       		org_phone,
+       		address,
+       		parent,
+       		hasChild,
+       		insert_time,
+       		last_update_time) 
+       values(
+          	#{orgName},
+       		#{orgMail},
+       		#{orgManager},
+       		#{orgPhone},
+       		#{address},
+       		#{parent},
+       		#{hasChild},
+       		#{insertTime},
+       		#{lastUpdateTime}
+        );
+    </insert>
+    
+    <update id="updateSysOrg" parameterType="com.tandong.iknowbox.admin.sysmgr.entity.SysOrg">
+        update sys_org set 
+            org_name = #{orgName},
+       		org_mail = #{orgMail},
+       		org_manager = #{orgManager},
+       		org_phone = #{orgPhone},
+       		address = #{address},
+       		parent = #{parent},
+       		hasChild = #{hasChild},
+       		insert_time = #{insertTime},
+       		last_update_time = #{lastUpdateTime}
+        where ID=#{id}         
+    </update>
+    
+    <delete id="delSysOrg" parameterType="Long">
+		delete from sys_org where ID = #{id}
+	</delete>
+    
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tandong</groupId>
+  <artifactId>iknowbox</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>我的知识盒子</name>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<org.slf4j-version>1.6.4</org.slf4j-version>
+		<org.slf4j-version>1.6.4</org.slf4j-version>
+	</properties>
+	
+  <modules>
+    <module>iknowbox-drools</module>
+    <module>iknowbox-disruptor</module>
+    <module>iknowbox-common</module>
+    <module>iknowbox-admin</module>
+    <module>iknowbox-netty</module>
+    <module>iknowbox-concurrent</module>
+    <module>iknowbox-aqs</module>
+  </modules>
+</project>

@@ -142,28 +142,28 @@
 		            width: 100,
 		            align: 'left',
 		            valign: 'top',
-		            sortable: true
+		            sortable: false
 		        },{
 		            field: 'memNo',
 		            title: '会员号',
 		            width: 100,
 		            align: 'center',
 		            valign: 'middle',
-		            sortable: true,
+		            sortable: false,
 		        }, {
 		            field: 'busPurOrderno',
 		            title: '订单号',
 		            width: 100,
 		            align: 'center',
 		            valign: 'middle',
-		            sortable: true,
+		            sortable: false,
 		        }, {
 		            field: 'purAmount',
 		            title: '申购份额',
 		            width: 40,
 		            align: 'left',
 		            valign: 'top',
-		            sortable: true,
+		            sortable: false,
 		        }, {
 		
 		            field: 'applyTime',
@@ -171,7 +171,12 @@
 		            width: 80,
 		            align: 'left',
 		            valign: 'top',
-		            sortable: true
+		            sortable: false,
+		            formatter: function(value){
+		            	if(null != value){
+		            		return new Date(value).format("yyyy/MM/dd hh:mm:ss");
+		            	}
+		            }
 		        }, {
 		
 		            field: 'fundCode',
@@ -179,7 +184,7 @@
 		            width: 80,
 		            align: 'middle',
 		            valign: 'top',
-		            sortable: true
+		            sortable: false
 		        }, {
 		
 		            field: 'channelCode',
@@ -187,7 +192,7 @@
 		            width: 100,
 		            align: 'left',
 		            valign: 'top',
-		            sortable: true
+		            sortable: false
 		        }, {
 		
 		            field: 'purStatus',
@@ -195,7 +200,12 @@
 		            width: 100,
 		            align: 'left',
 		            valign: 'top',
-		            sortable: true
+		            sortable: false,
+		            formatter: function(value){
+		            	if(null != value){
+		            		return dictCache.getDictItemName("ORDER_STATUS",value)
+		            	}
+		            }
 		        }, {
 		            field: 'operate',
 		            title: '操作',

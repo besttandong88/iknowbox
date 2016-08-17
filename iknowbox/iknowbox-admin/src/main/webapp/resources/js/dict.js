@@ -61,16 +61,12 @@ var DictCache = function() {
 		if(this.dictTypes.length <= 0){
 			return "";
 		}
-		for(var i=0; i<this.dictTypes.length; i++){
-			if(this.dictTypes[i].typeCode != typeCode){
+		var items = this.dictData[typeCode];
+		for(var i=0; i<items.length; i++){
+			if(items[i].itemCode != itemCode){
 				continue;
 			}
-			for(var j=0; j<this.dictItems.length; j++){
-				if(this.dictItems[j].typeCode != this.dictTypes[i].typeCode || this.dictItems[j].itemCode != itemCode){
-					continue;
-				}
-				return this.dictItems[j].itemName;
-			}
+			return items[i].itemName;
 		}
 	}
 	

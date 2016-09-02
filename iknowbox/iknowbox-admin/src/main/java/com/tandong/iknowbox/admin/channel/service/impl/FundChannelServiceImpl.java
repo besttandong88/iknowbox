@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tandong.iknowbox.admin.channel.dao.FundChannelMapper;
@@ -35,6 +36,20 @@ public class FundChannelServiceImpl implements IFundChannelService {
 			logger.error("查询基金渠道信息失败", e);
 			throw new ApplicationException("error.fundchannel.query");
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.tandong.iknowbox.admin.channel.service.IFundChannelService#insertFundChannelHis(java.lang.String)
+	 */
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public int insertFundChannelHis(String batchNo) {
+		int i=0; 
+		try {
+			i = fundChannelMapper.insertFundChannelHis(batchNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 	
 

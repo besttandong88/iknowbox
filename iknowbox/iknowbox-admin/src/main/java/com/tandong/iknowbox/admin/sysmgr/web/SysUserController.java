@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +19,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.tandong.iknowbox.admin.AppConstants;
 import com.tandong.iknowbox.admin.sysmgr.entity.SysUser;
 import com.tandong.iknowbox.admin.sysmgr.service.ISysUserService;
+import com.tandong.iknowbox.common.exception.ApplicationException;
 import com.tandong.iknowbox.common.web.BaseController;
 
 /**
@@ -170,6 +170,21 @@ public class SysUserController extends BaseController {
 		result.put("success", true);
 		result.put("data", data);
 		return result;
+	}
+	
+	@RequestMapping(value = "/pwd/update", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> updatePwd(HttpServletRequest request, @RequestParam String oldPwd, @RequestParam String newPwd)throws ApplicationException  {
+		//获取当前登录用户
+		SysUser loginUser = (SysUser)request.getSession().getAttribute(AppConstants.CURRENT_LOGIN_USER);
+		if(null == loginUser){
+			throw new ApplicationException("Current login user is null.");
+		}
+		if(!loginUser.getLoginPwd().equals(oldPwd)){
+			return this.buildErrorResult("密码错误");
+		}
+		loginUser.setLoginPwd(newPwd);
+		sysUserService.updateSysUser(loginUser);
+		return this.buildResult();
 	}
 
 }

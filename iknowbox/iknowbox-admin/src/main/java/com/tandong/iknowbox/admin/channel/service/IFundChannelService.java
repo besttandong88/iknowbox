@@ -17,4 +17,5 @@ public interface IFundChannelService {
 	
 	public List<FundChannel> getAllChannel() throws ApplicationException;
 
+	public int insertFundChannelHis(String batchNo);
 }

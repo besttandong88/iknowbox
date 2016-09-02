@@ -68,6 +68,12 @@ public class BaseController {
 		return result;
 	}
 	
+	public Map<String, Object> buildResult(){
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("success", true);
+		return result;
+	}
+	
 	public Map<String, Object> buildErrorResult(String errorMsg){
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("success", false);

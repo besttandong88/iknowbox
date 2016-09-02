@@ -34,8 +34,10 @@
 	<logger name="org.hibernate" level="ERROR"/>
 	<logger name="httpclient.wire" level="ERROR"/>
 	<logger name="org.apache.commons" level="ERROR"/>
-	<logger name="jdbc.sqltiming" level="DEBUG"/>
-	<logger name="org.apache.ibatis" level="DEBUG"/>
+	<logger name="jdbc.sqltiming" level="ERROR"/>
+	<logger name="org.mybatis.spring" level="ERROR"/>
+	<logger name="org.apache.ibatis" level="ERROR"/>
+	<logger name="com.tandong" level="INFO"/>
 	
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />

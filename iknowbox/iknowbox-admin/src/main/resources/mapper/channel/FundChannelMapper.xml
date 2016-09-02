@@ -5,14 +5,35 @@
 		<id column="ID" property="id" jdbcType="BIGINT" />
 		<result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
 		<result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+		<result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
 	</resultMap>
 	
-	<sql id="Base_Column_List">
+	<sql id="fundchannel_columns">
 		ID, channel_code, channel_name
 	</sql>
 	<select id="getAllChannel" resultMap="BaseResultMap">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="fundchannel_columns" />
 		from fund_channel
 	</select>
+	
+	<insert id="inertFundChannel" parameterType="com.tandong.iknowbox.admin.channel.entity.FundChannel" >
+	    insert into fund_channel (id, channel_code, channel_name, batch_no)
+	    values (#{id,jdbcType=INTEGER}, #{channelCode,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delFundChannel" parameterType="java.lang.String" >
+    	delete from fund_channel
+    	where batch_no != #{batchNo,jdbcType=VARCHAR}
+    </delete>
+    
+    <insert id="insertFundChannelHis" parameterType="java.lang.String">
+    insert into fund_channel_his (id, channel_code,
+      channel_name, batch_no)
+    select id, channel_code,
+      channel_name, batch_no from fund_channel r
+      where r.batch_no is not null
+  </insert>
+    
+  
 </mapper>

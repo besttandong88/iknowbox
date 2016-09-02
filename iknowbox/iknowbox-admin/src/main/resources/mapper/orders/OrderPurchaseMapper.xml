@@ -25,7 +25,7 @@
     <result column="apply_uptime" property="applyUptime" jdbcType="TIMESTAMP" />
   </resultMap>
   
-  <sql id="Base_Column_List" >
+  <sql id="purorder_columns" >
     id, bus_pur_orderno, mer_no, pur_amount, mem_no, cust_no, bank_prod_code, fund_code, 
     channel_code, purch_type, pur_status, is_pay_grant, begin_profit_date, confirm_share, 
     confirm_date, res_code, res_msg, remark, apply_date, apply_time, apply_uptime
@@ -79,7 +79,7 @@
   
   <select id="getOrderPurchaseById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
+    <include refid="purorder_columns" />
     from order_purchase
     where id = #{id,jdbcType=INTEGER}
   </select>

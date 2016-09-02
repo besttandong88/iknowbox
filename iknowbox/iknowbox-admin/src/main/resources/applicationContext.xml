@@ -63,5 +63,8 @@
 		lazy-init="false"></bean>
 
 	<aop:aspectj-autoproxy />
+	
+	
+	<import resource="job/job.xml"/>
 
 </beans>

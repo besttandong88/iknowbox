@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+	<head>
+		<type>xml</type>
+		<protocol>http</protocol>
+	</head>
+	<body>
+		<customers>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+			<customer>
+				<id>2016072100000100100000000001</id>
+				<name>tandong</name>
+				<number>430703198511209830</number>
+				<birthday>19851120</birthday>
+				<address>Beijing,chaoyang,dingfuzhuang north street. Fuyiyuan Number 8 Unit 3 Home401</address>
+				<balance>100,0000.00</balance>
+			</customer>
+		</customers>
+	</body>
+</message>

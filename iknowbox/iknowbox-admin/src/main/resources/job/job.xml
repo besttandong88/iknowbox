@@ -1,0 +1,44 @@
+<beans:beans xmlns= "http://www.springframework.org/schema/batch"
+     xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+           
+     <beans:bean id ="jobRepository" class= "org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" >
+           <beans:property name ="transactionManager" ref= "transactionManagerClear" />
+     </beans:bean >
+
+     <beans:bean id ="transactionManagerClear" class= "org.springframework.batch.support.transaction.ResourcelessTransactionManager"></beans:bean >
+
+     <job id ="testJob">
+           <step id ="first-step" next="secend-step">
+               <tasklet ref ="first-tasklet"></tasklet>
+           </step >
+           <step id ="secend-step" next="three-step">
+               <tasklet >
+                    <chunk reader ="myReader" writer= "myWriter" processor ="myProcessor" commit-interval= "1"></chunk >
+               </tasklet >
+           </step >
+           <step id ="three-step">
+               <tasklet ref ="three-tasklet"></tasklet>
+           </step >
+     </job >
+	
+	 <beans:bean id ="first-tasklet" class= "com.tandong.iknowbox.admin.job.FirstTasklet" ></beans:bean>
+     <beans:bean id ="myReader" class= "com.tandong.iknowbox.admin.job.MyReader" ></beans:bean >
+     <beans:bean id ="myWriter" class= "com.tandong.iknowbox.admin.job.MyWriter" ></beans:bean >
+     <beans:bean id ="myProcessor" class= "com.tandong.iknowbox.admin.job.MyProcessor" ></beans:bean >
+     <beans:bean id ="three-tasklet" class= "com.tandong.iknowbox.admin.job.ThreeTasklet" ></beans:bean >
+     
+     <beans:bean id ="jobLauncher" class= "org.springframework.batch.core.launch.support.SimpleJobLauncher" >
+           <beans:property name ="taskExecutor" ref= "syncTaskExecutor" />
+           <beans:property name ="jobRepository" ref= "jobRepository" />
+     </beans:bean >
+     <beans:bean id ="syncTaskExecutor" class= "org.springframework.core.task.SyncTaskExecutor" />
+
+	 <beans:bean id ="jobLauncherTestUtils" class= "org.springframework.batch.test.JobLauncherTestUtils" >
+           <beans:property name ="job" ref= "testJob"></beans:property >
+     </beans:bean >
+</beans:beans>

@@ -24,5 +24,6 @@
     <module>iknowbox-netty</module>
     <module>iknowbox-concurrent</module>
     <module>iknowbox-aqs</module>
+    <module>iknowbox-admin-api</module>
   </modules>
 </project>

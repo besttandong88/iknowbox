@@ -4,6 +4,7 @@
 	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	    http://www.springframework.org/schema/tx
@@ -15,7 +16,9 @@
 		http://www.springframework.org/schema/data/jpa
 		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/oxm
-		http://www.springframework.org/schema/oxm/spring-oxm.xsd"
+		http://www.springframework.org/schema/oxm/spring-oxm.xsd
+		http://code.alibabatech.com/schema/dubbo 
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
 	default-lazy-init="true">
 
 	<!-- Activates scanning of @Autowired -->
@@ -57,14 +60,14 @@
 		<property name="preferredTestQuery" value="select 1" />
 	</bean>
 
-	<context:property-placeholder location="classpath:database.properties" />
+	<context:property-placeholder location="classpath:app.properties" />
 
-	<bean id="springContextHolder" class="com.tandong.iknowbox.common.SpringContextHolder"
-		lazy-init="false"></bean>
+	<bean id="springContextHolder" class="com.tandong.iknowbox.common.SpringContextHolder" lazy-init="false"></bean>
 
 	<aop:aspectj-autoproxy />
 	
 	
 	<import resource="job/job.xml"/>
-
+	<import resource="dubbo.xml"/>
+	
 </beans>

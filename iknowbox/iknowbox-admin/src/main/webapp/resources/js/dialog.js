@@ -1,5 +1,36 @@
+//提示信息框
+var box = {};
+//警告提示框
+box.warnBox = function(opt){
+	var html = '<div class="boxContainer"><div class="boxMain"><i class="ico-success"></i>'+opt.content+'</div></div>';
+	$("body").append(html);
+	var width = "-"+$(".boxContainer").width()/2+"px";
+	var height = "-"+$(".boxContainer").height()+"px";
+	$(".boxContainer").css({"marginLeft":width,"marginTop":height});
+	timer = window.setTimeout(displayDiv,"1000");
+	
+	function displayDiv(){
+		$(".boxContainer").remove();
+		clearTimeout(timer);
+	}
+};
+box.errorBox = function(opt){
+	//弹出框调用示示例
+	/* box.errorBox({
+		"title":"错误信息错误信息错误信息错误信息",
+		"errorMsg":"错误信息内容"
+	}); */
+	var html = '<div class="errorBoxcont"><h2><span>'+opt.title+'</span><a href="javascript:;" class="error-close">&times;</a></h2><p>'+opt.errorMsg+'</p></div>';
+	$("body").append(html);
+	var width = "-"+$(".errorBoxcont").width()/2+"px";
+	var height = "-"+$(".errorBoxcont").height()+"px";
+	$(".errorBoxcont").css({"marginLeft":width,"marginTop":height});
+	$(".error-close").on("click",function(){
+		$(".errorBoxcont").remove();
+	});
+};
 (function($) {
-
+	
 	window.Dialog = function() {
 		var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">'
 				+ '<div class="modal-dialog modal-sm">'

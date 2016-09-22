@@ -38,6 +38,7 @@
 	<logger name="org.mybatis.spring" level="ERROR"/>
 	<logger name="org.apache.ibatis" level="ERROR"/>
 	<logger name="com.tandong" level="INFO"/>
+	<logger name="org.apache.zookeeper" level="ERROR"/>
 	
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />

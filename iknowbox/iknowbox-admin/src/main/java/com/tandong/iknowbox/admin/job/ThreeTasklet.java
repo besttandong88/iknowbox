@@ -17,7 +17,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tandong.iknowbox.admin.channel.dao.FundChannelMapper;
+import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
 
 /**
  *
@@ -34,12 +34,11 @@ public class ThreeTasklet implements Tasklet {
 	private static Logger log = LoggerFactory.getLogger(FirstTasklet.class);
 
 	@Autowired
-    private FundChannelMapper fundChannelMapper;
+    private ReconOuterThirdOrderMapper reconOuterThirdOrderMapper;
 	
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
           log.info( "执行第三个任务");
           String batchNo = String.valueOf(chunkContext.getAttribute("batchNo"));
-          fundChannelMapper.delFundChannel(batchNo);
           return RepeatStatus.FINISHED;
     }
 }

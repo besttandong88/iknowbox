@@ -9,6 +9,8 @@
  */
 package com.tandong.iknowbox.admin.api;
 
+import com.tandong.iknowbox.admin.TestMessage;
+
 /**
  *
  * DubboService
@@ -22,5 +24,7 @@ package com.tandong.iknowbox.admin.api;
 public interface DubboService {
 	
 	public String sayHello(String name);
+	
+	public TestMessage test(TestMessage msg);
 
 }

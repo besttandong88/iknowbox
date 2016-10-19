@@ -9,12 +9,12 @@
  */
 package com.tandong.iknowbox.admin.job;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tandong.iknowbox.admin.channel.service.IFundChannelService;
+import com.tandong.iknowbox.admin.job.vo.ReconOuterMessage;
 
 /**
  *
@@ -26,18 +26,15 @@ import com.tandong.iknowbox.admin.channel.service.IFundChannelService;
  * @version 1.0.0
  *
  */
-public class MyProcessor implements ItemProcessor<MyModel, String> {
+public class MyProcessor implements ItemProcessor<ReconOuterMessage, String> {
 	
 	private static Logger log = LoggerFactory.getLogger(MyProcessor.class);
 	
-	@Autowired
-    private IFundChannelService fundChannelService;
-
     @Override
-    public String process(MyModel item) throws Exception {
-          log.info( "执行第二个任务，process处理数据");
-          Thread.sleep(1000);
-          fundChannelService.insertFundChannelHis(null);
+    public String process(ReconOuterMessage data) throws Exception {
+          log.info( "执行第二个任务，process处理数据: "+data.toString());
+          String thirdOrderNo = data.getThirdOrderNo();
+          String platOrderNo = data.getPlatOrderNo();
           return "success";
     }
 }

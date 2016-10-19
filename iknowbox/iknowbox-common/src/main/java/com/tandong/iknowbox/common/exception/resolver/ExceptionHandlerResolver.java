@@ -161,6 +161,7 @@ public class ExceptionHandlerResolver extends ExceptionHandlerExceptionResolver 
 		if (null == value) {
 			value = new HashMap();
 		}
+		logger.error(exception.getStackTrace());
 		if(exception instanceof ApplicationException){
 			ApplicationException appException = (ApplicationException)exception;
 			value.put("errorCode", appException.getErrCode());

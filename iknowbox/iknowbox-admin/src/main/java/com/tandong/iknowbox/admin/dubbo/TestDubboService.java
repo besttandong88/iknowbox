@@ -13,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import com.tandong.iknowbox.admin.TestMessage;
 import com.tandong.iknowbox.admin.api.DubboService;
 
 /**
@@ -37,6 +38,15 @@ public class TestDubboService implements DubboService {
 		String str = "Hello "+name;
 		logger.debug(str);
 		return str;
+	}
+	
+	public TestMessage test(TestMessage msg) {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return new TestMessage("10000", "记账成功");
 	}
 
 }

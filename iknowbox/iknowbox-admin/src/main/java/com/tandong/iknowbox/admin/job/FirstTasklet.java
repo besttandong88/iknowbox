@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tandong.iknowbox.admin.channel.dao.FundChannelMapper;
 import com.tandong.iknowbox.admin.channel.entity.FundChannel;
+import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
 
 /**
  *
@@ -35,18 +36,11 @@ public class FirstTasklet implements Tasklet {
 	private static Logger log = LoggerFactory.getLogger(FirstTasklet.class);
 	
 	@Autowired
-    private FundChannelMapper fundChannelMapper;
+    private ReconOuterThirdOrderMapper reconOuterThirdOrderMapper;
 
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-    	log.info( "执行第一个任务");
+    	log.info( "执行第一个任务, 准备待对账数据");
     	String batchNo = String.valueOf(chunkContext.getStepContext().getJobParameters().get("batchNo"));
-    	for(int i=0; i<10000; i++){
-    		FundChannel channel = new FundChannel();
-    		channel.setChannelCode("test_code"+i);
-    		channel.setChannelName("test_name"+i);
-    		channel.setBatchNo(batchNo);
-    		fundChannelMapper.inertFundChannel(channel);
-    	}
         return RepeatStatus.FINISHED;
     }
 }

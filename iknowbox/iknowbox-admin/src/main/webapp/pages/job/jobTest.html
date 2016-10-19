@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>后台管理系统</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+			定时任务
+			<small>SpringBatch Demo</small>
+			</h1>
+		</section>
+
+		<section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form id="formSearch" class="form-horizontal">
+								<div class="form-group" style="margin-top: 5px">
+									<label class="control-label col-sm-1" for="txt_search_departmentname">交易类型</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="transType" placeholder="交易类型">
+									</div>
+									<label class="control-label col-sm-1" for="txt_search_channel">渠道</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="channelCode" placeholder="交易类型">
+									</div>
+								</div>
+								<div class="form-group" style="margin-top: 5px">
+									<label class="control-label col-sm-1" for="txt_search_departmentname">起止日期</label>
+									<div class="col-sm-2" style="text-align: left;">
+										<button type="button" id="runBtn" class="btn btn-primary">Run</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="box">
+						<!-- /.box-header -->
+						<div class="box-body">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	
+	</div>
+	
+	<script>
+	$(document).ready(function() {
+		 	//Run按钮点击事件
+			$("#runBtn").click(function(){
+				//执行任务
+				$.ajax({
+					url : "job/run?t="+(new Date()).valueOf(),
+					method : "POST",
+					dataType : "json",
+					async : false,
+					data:{
+				    	transType: $("#transType").val(),
+				    	channelCode: $("#channelCode").val()
+				    },
+					success : function(data) {
+						alert(data.ret);
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						var result = JSON.parse(XMLHttpRequest.responseText);
+						box.warnBox({
+							"content":result.errorMessage
+						});
+					}
+				});
+			});
+		 	
+		});
+</script>
+</body>
+</html>

@@ -7,20 +7,20 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
 		<h4 class="modal-title" id="exampleModalLabel">编辑申购业务订单</h4>
 	</div>
 	<div class="modal-body">
 		<form id="purorder_edit_form" class="form-horizontal">
-			<input type="hidden" name="id" />
-			<input type="hidden" name="purStatus" />
-			<input type="hidden" name="applyUptime" />
-			<input type="hidden" name="beginProfitDate" />
-			<input type="hidden" name="bankProdCode" />
-			<input type="hidden" name="confirmShare" />
-			<input type="hidden" name="confirmDate" />
-			<input type="hidden" name="purchType" />
-			<input type="hidden" name="applyDate" />
+			<input type="hidden" name="id" /> <input type="hidden"
+				name="purStatus" /> <input type="hidden" name="applyUptime" /> <input
+				type="hidden" name="beginProfitDate" /> <input type="hidden"
+				name="bankProdCode" /> <input type="hidden" name="confirmShare" />
+			<input type="hidden" name="confirmDate" /> <input type="hidden"
+				name="purchType" /> <input type="hidden" name="applyDate" />
 			<div class="form-group">
 				<label for="merno" class="control-label col-sm-2">商户号</label>
 				<div class="col-sm-4">
@@ -34,19 +34,23 @@
 			<div class="form-group">
 				<label for="orderNo" class="control-label col-sm-2">订单号</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="orderNo" name="busPurOrderno">
+					<input type="text" class="form-control" id="orderNo"
+						name="busPurOrderno">
 				</div>
 				<label for="purAmount" class="control-label col-sm-2">申购份额</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="purAmount" name="purAmount">
+					<input type="text" class="form-control" id="purAmount"
+						name="purAmount">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="fundChannel" class="control-label col-sm-2">基金渠道</label>
 				<div class="col-sm-4">
-					<select class="form-control" id="fund_channel_edit" name="channelCode">
+					<select class="form-control" id="fund_channel_edit"
+						name="channelCode">
 						<option value="">全部</option>
-						<script id="fundchannel_select_edit_temp" type="text/x-handlebars-template">
+						<script id="fundchannel_select_edit_temp"
+							type="text/x-handlebars-template">
 						{{#each data}}
                         <option value="{{channelCode}}">{{channelName}}</option>
 						{{/each}}
@@ -55,7 +59,8 @@
 				</div>
 				<label for="fundCode" class="control-label col-sm-2">基金代码</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control " id="fundCode" name="fundCode">
+					<input type="text" class="form-control " id="fundCode"
+						name="fundCode">
 				</div>
 			</div>
 			<div class="form-group">
@@ -69,18 +74,20 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 		<button type="button" class="btn btn-primary" id="save_purorder_btn">保存</button>
-	</div> 
-	
+		<button type="submit" class="btn btn-primary" id="save_purorder_btn2">submit</button>
+	</div>
+
 	<script type="text/javascript">
 		$(function() {
 			//获取基金渠道下拉列表
 			$.ajax({
-				url : "channel/fund/all?t="+(new Date()).valueOf(),
+				url : "channel/fund/all?t=" + (new Date()).valueOf(),
 				method : "POST",
 				dataType : "json",
 				async : false,
 				success : function(data) {
-					var templateHtml = $("#fundchannel_select_edit_temp").html();
+					var templateHtml = $("#fundchannel_select_edit_temp")
+							.html();
 					var template = Handlebars.compile(templateHtml);
 					var html = template(data);
 					$("#fund_channel_edit").append(html);
@@ -88,38 +95,42 @@
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					var result = JSON.parse(XMLHttpRequest.responseText);
 					box.warnBox({
-						"content":result.errorMessage
+						"content" : result.errorMessage
 					});
 				}
-			}); 
-			
-			//保存按钮点击事件
-			$("#save_purorder_btn").click(function(){
-				var postData = JSON.stringify($("#purorder_edit_form").serializeJSON());
-				$.ajax({
-					url : "orders/purchase/update?t="+(new Date()).valueOf(),
-					method : "POST",
-					contentType : "application/json",
-					dataType : "json",
-					data: postData,
-					async : false,
-					success : function(data) {
-						if(data.success){
-							Dialog.alert("操作成功");
-							$('#edit_purorder_modal').modal('hide')
-							$("#table").bootstrapTable('refresh');
-						}else{
-							Dialog.alert("操作失败");
-						}
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						var result = JSON.parse(XMLHttpRequest.responseText);
-						box.warnBox({
-							"content":result.errorMessage
-						});
-					}
-				});
 			});
+
+			//保存按钮点击事件
+			$("#save_purorder_btn").click(
+					function() {
+						var postData = JSON.stringify($("#purorder_edit_form").serializeJSON());
+						$.ajax({
+							url : "orders/purchase/update?t="
+									+ (new Date()).valueOf(),
+							method : "POST",
+							contentType : "application/json",
+							dataType : "json",
+							data : postData,
+							async : false,
+							success : function(data) {
+								if (data.success) {
+									Dialog.alert("操作成功");
+									$('#edit_purorder_modal').modal('hide')
+									$("#table").bootstrapTable('refresh');
+								} else {
+									Dialog.alert("操作失败");
+								}
+							},
+							error : function(XMLHttpRequest, textStatus,
+									errorThrown) {
+								var result = JSON
+										.parse(XMLHttpRequest.responseText);
+								box.warnBox({
+									"content" : result.errorMessage
+								});
+							}
+						});
+					});
 		});
 	</script>
 </body>

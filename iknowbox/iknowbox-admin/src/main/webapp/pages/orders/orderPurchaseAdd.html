@@ -5,36 +5,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>新增申购业务订单</title>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<h4 class="modal-title" id="exampleModalLabel">新增申购业务订单</h4>
 	</div>
 	<div class="modal-body">
-		<form id="purorder_add_form" class="form-horizontal">
+		<form id="purorder_add_form" role="form" class="form-horizontal" >
 			<div class="form-group">
 				<label for="merno" class="control-label col-sm-2">商户号</label>
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="merno" name="merNo">
 				</div>
+		    </div>
+			<div class="form-group">
 				<label for="memNo" class="control-label col-sm-2">会员号</label>
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="memNo" name="memNo">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="orderNo" class="control-label col-sm-2">订单号</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="orderNo" name="busPurOrderno">
+				<label for="busPurOrderno" class="control-label col-sm-2">订单号</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="busPurOrderno" name="busPurOrderno">
 				</div>
+			</div>
+			<div class="form-group">
 				<label for="purAmount" class="control-label col-sm-2">申购份额</label>
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="purAmount" name="purAmount">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="fundChannel" class="control-label col-sm-2">基金渠道</label>
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 					<select class="form-control" id="fund_channel_edit" name="channelCode">
 						<option value="">全部</option>
 						<script id="fundchannel_select_edit_temp" type="text/x-handlebars-template">
@@ -44,14 +48,16 @@
                         </script>
 					</select>
 				</div>
+			</div>
+			<div class="form-group">
 				<label for="fundCode" class="control-label col-sm-2">基金代码</label>
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 					<input type="text" class="form-control " id="fundCode" name="fundCode">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="remark" class="control-label col-sm-2">备注</label>
-				<div class="col-sm-10">
+				<div class="col-sm-9">
 					<textarea class="form-control " id="remark" name="remark"></textarea>
 				</div>
 			</div>
@@ -63,7 +69,7 @@
 	</div> 
 	
 	<script type="text/javascript">
-		$(function() {
+		 $(function() {
 			//获取基金渠道下拉列表
 			$.ajax({
 				url : "channel/fund/all?t="+(new Date()).valueOf(),
@@ -86,31 +92,97 @@
 			
 			//保存按钮点击事件
 			$("#save_purorder_btn").click(function(){
-				var postData = JSON.stringify($("#purorder_add_form").serializeJSON());
-				$.ajax({
-					url : "orders/purchase/add?t="+(new Date()).valueOf(),
-					method : "POST",
-					contentType : "application/json",
-					dataType : "json",
-					data: postData,
-					async : false,
-					success : function(data) {
-						if(data.success){
-							Dialog.alert("操作成功");
-							$('#add_purorder_modal').modal('hide')
-							$("#table").bootstrapTable('refresh');
-						}else{
-							Dialog.alert("操作失败");
-						}
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
-						var result = JSON.parse(XMLHttpRequest.responseText);
-						box.warnBox({
-							"content":result.errorMessage
-						});
-					}
-				});
+				$('#purorder_add_form').submit();
 			});
+			//点击取消按钮，清楚表单验证
+			$('#add_purorder_modal').on('hide.bs.modal', function () {
+				$('#purorder_add_form').data('bootstrapValidator').resetForm(true);
+			});
+			//表单验证，验证通过之后执行ajax提交表单，新增数据
+			$('#purorder_add_form').bootstrapValidator({
+						message : '值无效',
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							merNo : {
+								message : '商户号无效',
+								validators : {
+									notEmpty : {
+										message : '商户号不能为空'
+									},
+									stringLength : {
+										min : 6,
+										max : 30,
+										message : '商户号长度为6-30个字符'
+									},
+									regexp : {
+										regexp : /^[a-zA-Z0-9_\.]+$/,
+										message : '商户号只能包含字母、数字和下划线'
+									}
+								}
+							},
+							memNo : {
+								validators : {
+									notEmpty : {
+										message : '会员号不能为空'
+									}
+								}
+							},
+							busPurOrderno : {
+								validators : {
+									notEmpty : {
+										message : '订单号不能为空'
+									}
+								}
+							},
+							remark : {
+								validators : {
+									stringLength : {
+										max : 200,
+										message : '备注长度不能超过200个字符'
+									}
+								}
+							}
+						}
+					}).on(
+					'success.form.bv',function(e) {
+						/**
+						e.preventDefault();
+						var $form = $(e.target);
+						var bv = $form.data('bootstrapValidator');
+						*/
+						// ajax提交，新增数据
+						var postData = JSON.stringify($("#purorder_add_form").serializeJSON());
+						$.ajax({
+							url : "orders/purchase/add?t="
+									+ (new Date()).valueOf(),
+							method : "POST",
+							contentType : "application/json",
+							dataType : "json",
+							data : postData,
+							async : false,
+							success : function(data) {
+								if (data.success) {
+									Dialog.alert("操作成功");
+									$('#add_purorder_modal').modal('hide')
+									$("#table").bootstrapTable('refresh');
+								} else {
+									Dialog.alert("操作失败");
+								}
+							},
+							error : function(XMLHttpRequest, textStatus,
+									errorThrown) {
+								var result = JSON
+										.parse(XMLHttpRequest.responseText);
+								box.warnBox({
+									"content" : result.errorMessage
+								});
+							}
+						});
+					});
 		});
 	</script>
 </body>

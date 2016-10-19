@@ -13,21 +13,61 @@
      <beans:bean id ="transactionManagerClear" class= "org.springframework.batch.support.transaction.ResourcelessTransactionManager"></beans:bean >
 
      <job id ="testJob">
-           <step id ="first-step" next="secend-step">
+           <step id ="first-step" next="three-step">
                <tasklet ref ="first-tasklet"></tasklet>
            </step >
+           <!--  
            <step id ="secend-step" next="three-step">
                <tasklet >
-                    <chunk reader ="myReader" writer= "myWriter" processor ="myProcessor" commit-interval= "1"></chunk >
+                    <chunk reader ="outerReconReader" writer= "myWriter" processor ="myProcessor" commit-interval= "1000"></chunk >
                </tasklet >
-           </step >
+           </step>-->
            <step id ="three-step">
                <tasklet ref ="three-tasklet"></tasklet>
            </step >
      </job >
+     
+     <!-- 以游标形式从DB读取数据 -->
+	<beans:bean id="abstractCursorReader" abstract="true" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+     
+     <beans:bean id="outerReconReader" parent="abstractCursorReader" scope="step"> 
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="sql">
+			<beans:value>
+				<![CDATA[
+					SELECT 
+						t.order_no AS thirdOrderNo, t.order_amt AS thirdOrderAmount, t.status AS thirdStatus, t.id AS thirdId, t.request_time AS thirdRequestTime, 
+						p.order_no AS platOrderNo, p.order_amt AS platOrderAmount, p.status AS platStatus, p.id AS platId, p.request_time as platRequestTime, 
+						IFNULL(t.channel_code, p.channel_code) AS channelCode, IFNULL(t.trantype, p.trantype) AS thirdTransType, 
+						'#{jobParameters['channel_batch_code']}' AS thirdBatchNo, p.pay_order_no as payOrderNo, p.remark as bankAbbr
+
+						FROM recon_outer_third_order t 
+						LEFT JOIN recon_outer_plat_order p 
+						ON t.order_no = p.order_no 
+						WHERE t.trantype = '#{jobParameters['channel_file_type']}' and 
+						t.channel_code = '#{jobParameters['notify_channel_code']}'  
+					UNION ALL 
+					SELECT 
+						t.order_no AS thirdOrderNo, t.order_amt AS thirdOrderAmount, t.status AS thirdStatus, t.id AS thirdId, t.request_time AS thirdRequestTime, 
+						p.order_no AS platOrderNo, p.order_amt AS platOrderAmount, p.status AS platStatus, p.id AS platId, p.request_time as platRequestTime, 
+						IFNULL(t.channel_code, p.channel_code) AS channelCode, IFNULL(t.trantype, p.trantype) AS thirdTransType, 
+						'#{jobParameters['channel_batch_code']}' AS thirdBatchNo, p.pay_order_no as payOrderNo, p.remark as bankAbbr
+
+						FROM recon_outer_third_order t 
+						RIGHT JOIN recon_outer_plat_order p 
+						ON p.order_no = t.order_no 
+						WHERE p.trantype = '#{jobParameters['channel_file_type']}' and 
+						p.channel_code = '#{jobParameters['notify_channel_code']}' and 
+						p.status =  '#{jobParameters['tranStateS']}' and 
+						t.order_no is null  
+				]]>
+			</beans:value>
+		</beans:property>
+	 </beans:bean>
 	
 	 <beans:bean id ="first-tasklet" class= "com.tandong.iknowbox.admin.job.FirstTasklet" ></beans:bean>
-     <beans:bean id ="myReader" class= "com.tandong.iknowbox.admin.job.MyReader" ></beans:bean >
      <beans:bean id ="myWriter" class= "com.tandong.iknowbox.admin.job.MyWriter" ></beans:bean >
      <beans:bean id ="myProcessor" class= "com.tandong.iknowbox.admin.job.MyProcessor" ></beans:bean >
      <beans:bean id ="three-tasklet" class= "com.tandong.iknowbox.admin.job.ThreeTasklet" ></beans:bean >

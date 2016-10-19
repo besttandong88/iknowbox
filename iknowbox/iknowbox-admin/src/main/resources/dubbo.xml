@@ -19,10 +19,10 @@
 	default-lazy-init="true">
 	
 	<dubbo:application name="iknowbox-admin" />
-	<!--  register="false" 本地测试不注册到zk注册中心 -->
-	<dubbo:registry protocol="zookeeper" address="${zookeeper.url}" check="false"  file="/app/dubbo/iknowbox-admin.cache" ></dubbo:registry>
-	<dubbo:protocol name="dubbo" port="-1" />
 	
+	<dubbo:registry address="zookeeper://localhost:2181" check="false" ></dubbo:registry>
+	
+	<dubbo:protocol name="dubbo" port="20880" dispatcher="all" threadpool="fixed" threads="100" />
 	
 	<dubbo:service interface="com.tandong.iknowbox.admin.api.DubboService" ref="testDubboService" timeout="90000" connections="10" validation="false" retries="0"  version="1.0"/>
 </beans>

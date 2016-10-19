@@ -43,21 +43,23 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
-	<!-- C3P0数据源配置 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass" value="${db.driverClassName}" />
-		<property name="jdbcUrl" value="${db.url}" />
-		<property name="user" value="${db.username}" />
+	<!-- Druid数据源配置 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
-		<!-- <property name="initialPoolSize" value="5" /> <property name="minPoolSize" 
-			value="5" /> <property name="maxPoolSize" value="20" /> <property name="maxStatements" 
-			value="100" /> <property name="maxIdleTime" value="3600" /> <property name="acquireIncrement" 
-			value="2" /> <property name="acquireRetryAttempts" value="10" /> <property 
-			name="acquireRetryDelay" value="600" /> <property name="testConnectionOnCheckin" 
-			value="true" /> <property name="checkoutTimeout" value="10000" /> -->
-		<property name="idleConnectionTestPeriod" value="120" />
-		<property name="preferredTestQuery" value="select 1" />
+		<property name="initialSize" value="10" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="100" />
+		<property name="maxWait" value="30000" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
 	</bean>
 
 	<context:property-placeholder location="classpath:app.properties" />

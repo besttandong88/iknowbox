@@ -38,6 +38,9 @@ PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/orders/OrderPurchaseMapper.xml"/>
 		<mapper resource="mapper/channel/FundChannelMapper.xml"/>
 		
+		<mapper resource="mapper/job/ReconOuterThirdOrderMapper.xml"/>
+		<mapper resource="mapper/job/ReconOuterPlatOrderMapper.xml"/>
+		
 	</mappers>
 
 </configuration>

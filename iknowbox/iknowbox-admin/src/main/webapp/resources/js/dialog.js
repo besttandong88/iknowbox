@@ -32,7 +32,7 @@ box.errorBox = function(opt){
 (function($) {
 	
 	window.Dialog = function() {
-		var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">'
+		var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel" >'
 				+ '<div class="modal-dialog modal-sm">'
 				+ '<div class="modal-content">'
 				+ '<div class="modal-header">'

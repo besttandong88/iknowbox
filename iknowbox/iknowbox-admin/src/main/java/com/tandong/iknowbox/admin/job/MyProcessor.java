@@ -13,6 +13,7 @@ package com.tandong.iknowbox.admin.job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Service;
 
 import com.tandong.iknowbox.admin.job.vo.ReconOuterMessage;
 
@@ -26,6 +27,7 @@ import com.tandong.iknowbox.admin.job.vo.ReconOuterMessage;
  * @version 1.0.0
  *
  */
+@Service("myProcessor")
 public class MyProcessor implements ItemProcessor<ReconOuterMessage, String> {
 	
 	private static Logger log = LoggerFactory.getLogger(MyProcessor.class);

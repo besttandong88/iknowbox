@@ -60,6 +60,13 @@ public class JobMainController extends BaseController {
 	*/
 	@RequestMapping(value = "run", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> run(@RequestParam String transType, @RequestParam String channelCode)  {
+		
+		if(null == transType || "".equals(transType)){
+			transType="002";
+		}
+		if(null == channelCode || "".equals(channelCode)){
+			channelCode="BF01";
+		}
 		Map<String, Object> ret = new HashMap<String, Object>();
 		
 		Job jobBean = SpringContextHolder.getBean("testJob");
@@ -68,6 +75,7 @@ public class JobMainController extends BaseController {
 		JobParametersBuilder params = new JobParametersBuilder();
 		params.addString("transType", transType);
 		params.addString("channelCode", channelCode);
+		params.addString("batchNo", channelCode+String.valueOf(System.currentTimeMillis()));
 		try {
 			result = ((JobLauncher) SpringContextHolder.getBean("jobLauncher")).run(jobBean,params.toJobParameters());
 		} catch (JobExecutionAlreadyRunningException e) {

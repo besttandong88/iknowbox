@@ -16,9 +16,8 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.tandong.iknowbox.admin.channel.dao.FundChannelMapper;
-import com.tandong.iknowbox.admin.channel.entity.FundChannel;
 import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
 
 /**
@@ -31,6 +30,7 @@ import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
  * @version 1.0.0
  *
  */
+@Service("firstTasklet")
 public class FirstTasklet implements Tasklet {
 	
 	private static Logger log = LoggerFactory.getLogger(FirstTasklet.class);
@@ -41,6 +41,7 @@ public class FirstTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
     	log.info( "执行第一个任务, 准备待对账数据");
     	String batchNo = String.valueOf(chunkContext.getStepContext().getJobParameters().get("batchNo"));
+    	log.info( "对账批次-"+batchNo);
         return RepeatStatus.FINISHED;
     }
 }

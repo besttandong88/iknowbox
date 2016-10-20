@@ -14,6 +14,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -25,6 +26,7 @@ import org.springframework.batch.item.ItemWriter;
  * @version 1.0.0
  *
  */
+@Service("myWriter")
 public class MyWriter implements ItemWriter<String> {
 
 	private static Logger log = LoggerFactory.getLogger(MyWriter.class);

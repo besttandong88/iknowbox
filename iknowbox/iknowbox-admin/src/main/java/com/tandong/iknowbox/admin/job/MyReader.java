@@ -38,7 +38,7 @@ public class MyReader implements ItemReader<MyModel> {
          MyModel model = null;
          if ( count < 2) {
               model = new MyModel();
-              count++;
+              count++; 
          }
          return model;
     }

@@ -16,6 +16,7 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
 
@@ -29,6 +30,7 @@ import com.tandong.iknowbox.admin.job.dao.ReconOuterThirdOrderMapper;
  * @version 1.0.0
  *
  */
+@Service("threeTasklet")
 public class ThreeTasklet implements Tasklet {
 	
 	private static Logger log = LoggerFactory.getLogger(FirstTasklet.class);
@@ -38,7 +40,6 @@ public class ThreeTasklet implements Tasklet {
 	
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
           log.info( "执行第三个任务");
-          String batchNo = String.valueOf(chunkContext.getAttribute("batchNo"));
           return RepeatStatus.FINISHED;
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${ssm.home}/logs/ssm.log</File>
+		<File>${ssm.home}/logs/clear.log</File>
 		<Encoding>UTF-8</Encoding>  
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- rollover daily -->
-			<FileNamePattern>${ssm.home}/logs/emp-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<FileNamePattern>${ssm.home}/logs/clear-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- or whenever the file size reaches 50MB -->
 				<maxFileSize>5MB</maxFileSize>
@@ -12,7 +12,7 @@
 		</rollingPolicy>
 	 	<layout class="ch.qos.logback.classic.PatternLayout">  
 			<pattern>
-				[Know Box Admin][%d{yyyy-MM-dd HH:mm:ss SSS}] %-5level [%thread][%c:%line]- %msg%n
+				[clear][%d{yyyy/MM/dd HH:mm:ss SSS}] %-5level [%thread][%c:%line]- %msg%n
 			</pattern>
 		</layout>
 	</appender>
@@ -21,7 +21,7 @@
 	 	<Encoding>UTF-8</Encoding>           
 	 	<layout class="ch.qos.logback.classic.PatternLayout">  
 			<pattern>
-				[Know Box Admin][%d{yyyy-MM-dd HH:mm:ss SSS}] %-5level [%thread][%c:%line]- %msg%n
+				[clear][%d{yyyy/MM/dd HH:mm:ss SSS}] %-5level [%thread][%c:%line]- %msg%n
 			</pattern>
 		</layout>
 	</appender>
@@ -39,6 +39,7 @@
 	<logger name="org.apache.ibatis" level="ERROR"/>
 	<logger name="com.tandong" level="INFO"/>
 	<logger name="org.apache.zookeeper" level="ERROR"/>
+	<logger name="org.springframework.batch" level="DEBUG"/>
 	
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />

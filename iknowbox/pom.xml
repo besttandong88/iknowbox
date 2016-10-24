@@ -25,5 +25,6 @@
     <module>iknowbox-concurrent</module>
     <module>iknowbox-aqs</module>
     <module>iknowbox-admin-api</module>
+    <module>iknowbox-erp</module>
   </modules>
 </project>

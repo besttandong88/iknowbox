@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REG_TIME" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="FEE_DATE" property="feeDate" jdbcType="DATE" />
+    <result column="FEE_TYPE" property="feeType" jdbcType="INTEGER" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="FEE_USE" property="feeUse" jdbcType="VARCHAR" />
+    <result column="REG_USER" property="regUser" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REG_TIME, FEE_DATE, FEE_TYPE, AMOUNT, FEE_USE, REG_USER, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fee_reg_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fee_reg_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfo" >
+    insert into fee_reg_info (ID, REG_TIME, FEE_DATE, 
+      FEE_TYPE, AMOUNT, FEE_USE, 
+      REG_USER, MEMO)
+    values (#{id,jdbcType=BIGINT}, #{regTime,jdbcType=TIMESTAMP}, #{feeDate,jdbcType=DATE}, 
+      #{feeType,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{feeUse,jdbcType=VARCHAR}, 
+      #{regUser,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfo" >
+    insert into fee_reg_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="regTime != null" >
+        REG_TIME,
+      </if>
+      <if test="feeDate != null" >
+        FEE_DATE,
+      </if>
+      <if test="feeType != null" >
+        FEE_TYPE,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="feeUse != null" >
+        FEE_USE,
+      </if>
+      <if test="regUser != null" >
+        REG_USER,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeDate != null" >
+        #{feeDate,jdbcType=DATE},
+      </if>
+      <if test="feeType != null" >
+        #{feeType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeUse != null" >
+        #{feeUse,jdbcType=VARCHAR},
+      </if>
+      <if test="regUser != null" >
+        #{regUser,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfo" >
+    update fee_reg_info
+    <set >
+      <if test="regTime != null" >
+        REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeDate != null" >
+        FEE_DATE = #{feeDate,jdbcType=DATE},
+      </if>
+      <if test="feeType != null" >
+        FEE_TYPE = #{feeType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="feeUse != null" >
+        FEE_USE = #{feeUse,jdbcType=VARCHAR},
+      </if>
+      <if test="regUser != null" >
+        REG_USER = #{regUser,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tandong.iknowbox.admin.erp.feemgr.dao.FeeRegInfo" >
+    update fee_reg_info
+    set REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      FEE_DATE = #{feeDate,jdbcType=DATE},
+      FEE_TYPE = #{feeType,jdbcType=INTEGER},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      FEE_USE = #{feeUse,jdbcType=VARCHAR},
+      REG_USER = #{regUser,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

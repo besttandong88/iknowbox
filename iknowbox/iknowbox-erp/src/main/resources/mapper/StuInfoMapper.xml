@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tandong.iknowbox.erp.stumgr.dao.StuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tandong.iknowbox.erp.stumgr.dao.StuInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="STU_NAME" property="stuName" jdbcType="VARCHAR" />
+    <result column="STU_GENDER" property="stuGender" jdbcType="INTEGER" />
+    <result column="STU_AGE" property="stuAge" jdbcType="INTEGER" />
+    <result column="STU_ID" property="stuId" jdbcType="VARCHAR" />
+    <result column="STU_PHONE" property="stuPhone" jdbcType="VARCHAR" />
+    <result column="STU_ADDRESS" property="stuAddress" jdbcType="VARCHAR" />
+    <result column="STU_FROM" property="stuFrom" jdbcType="VARCHAR" />
+    <result column="SIGN_FLAG" property="signFlag" jdbcType="INTEGER" />
+    <result column="STU_P_NAME" property="stuPName" jdbcType="VARCHAR" />
+    <result column="STU_P_PHONE" property="stuPPhone" jdbcType="VARCHAR" />
+    <result column="STU_P_REL" property="stuPRel" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STU_NAME, STU_GENDER, STU_AGE, STU_ID, STU_PHONE, STU_ADDRESS, STU_FROM, SIGN_FLAG, 
+    STU_P_NAME, STU_P_PHONE, STU_P_REL, MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from stu_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from stu_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tandong.iknowbox.erp.stumgr.dao.StuInfo" >
+    insert into stu_info (ID, STU_NAME, STU_GENDER, 
+      STU_AGE, STU_ID, STU_PHONE, 
+      STU_ADDRESS, STU_FROM, SIGN_FLAG, 
+      STU_P_NAME, STU_P_PHONE, STU_P_REL, 
+      MEMO)
+    values (#{id,jdbcType=BIGINT}, #{stuName,jdbcType=VARCHAR}, #{stuGender,jdbcType=INTEGER}, 
+      #{stuAge,jdbcType=INTEGER}, #{stuId,jdbcType=VARCHAR}, #{stuPhone,jdbcType=VARCHAR}, 
+      #{stuAddress,jdbcType=VARCHAR}, #{stuFrom,jdbcType=VARCHAR}, #{signFlag,jdbcType=INTEGER}, 
+      #{stuPName,jdbcType=VARCHAR}, #{stuPPhone,jdbcType=VARCHAR}, #{stuPRel,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tandong.iknowbox.erp.stumgr.dao.StuInfo" >
+    insert into stu_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="stuName != null" >
+        STU_NAME,
+      </if>
+      <if test="stuGender != null" >
+        STU_GENDER,
+      </if>
+      <if test="stuAge != null" >
+        STU_AGE,
+      </if>
+      <if test="stuId != null" >
+        STU_ID,
+      </if>
+      <if test="stuPhone != null" >
+        STU_PHONE,
+      </if>
+      <if test="stuAddress != null" >
+        STU_ADDRESS,
+      </if>
+      <if test="stuFrom != null" >
+        STU_FROM,
+      </if>
+      <if test="signFlag != null" >
+        SIGN_FLAG,
+      </if>
+      <if test="stuPName != null" >
+        STU_P_NAME,
+      </if>
+      <if test="stuPPhone != null" >
+        STU_P_PHONE,
+      </if>
+      <if test="stuPRel != null" >
+        STU_P_REL,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="stuName != null" >
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGender != null" >
+        #{stuGender,jdbcType=INTEGER},
+      </if>
+      <if test="stuAge != null" >
+        #{stuAge,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null" >
+        #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPhone != null" >
+        #{stuPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuAddress != null" >
+        #{stuAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stuFrom != null" >
+        #{stuFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="signFlag != null" >
+        #{signFlag,jdbcType=INTEGER},
+      </if>
+      <if test="stuPName != null" >
+        #{stuPName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPPhone != null" >
+        #{stuPPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPRel != null" >
+        #{stuPRel,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tandong.iknowbox.erp.stumgr.dao.StuInfo" >
+    update stu_info
+    <set >
+      <if test="stuName != null" >
+        STU_NAME = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGender != null" >
+        STU_GENDER = #{stuGender,jdbcType=INTEGER},
+      </if>
+      <if test="stuAge != null" >
+        STU_AGE = #{stuAge,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null" >
+        STU_ID = #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPhone != null" >
+        STU_PHONE = #{stuPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuAddress != null" >
+        STU_ADDRESS = #{stuAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stuFrom != null" >
+        STU_FROM = #{stuFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="signFlag != null" >
+        SIGN_FLAG = #{signFlag,jdbcType=INTEGER},
+      </if>
+      <if test="stuPName != null" >
+        STU_P_NAME = #{stuPName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPPhone != null" >
+        STU_P_PHONE = #{stuPPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPRel != null" >
+        STU_P_REL = #{stuPRel,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tandong.iknowbox.erp.stumgr.dao.StuInfo" >
+    update stu_info
+    set STU_NAME = #{stuName,jdbcType=VARCHAR},
+      STU_GENDER = #{stuGender,jdbcType=INTEGER},
+      STU_AGE = #{stuAge,jdbcType=INTEGER},
+      STU_ID = #{stuId,jdbcType=VARCHAR},
+      STU_PHONE = #{stuPhone,jdbcType=VARCHAR},
+      STU_ADDRESS = #{stuAddress,jdbcType=VARCHAR},
+      STU_FROM = #{stuFrom,jdbcType=VARCHAR},
+      SIGN_FLAG = #{signFlag,jdbcType=INTEGER},
+      STU_P_NAME = #{stuPName,jdbcType=VARCHAR},
+      STU_P_PHONE = #{stuPPhone,jdbcType=VARCHAR},
+      STU_P_REL = #{stuPRel,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

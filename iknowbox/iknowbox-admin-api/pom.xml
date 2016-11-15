@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.tandong</groupId>
   <artifactId>iknowbox-admin-api</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>iknowbox-admin-api</name>
   <url>http://maven.apache.org</url>
   <properties>
